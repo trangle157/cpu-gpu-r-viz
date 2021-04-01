@@ -1,0 +1,65 @@
+---
+title: "Explore data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+library(dplyr)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+cpugpu <- read.csv("E:/Dataviz-Proj/cpugpu.csv")
+```
+
+
+```{r}
+popcpu <- cpugpu %>% count(CPU)
+popcpu <- popcpu %>% arrange(desc(n))
+```
+
+```{r}
+ryzen_5_3600 <- cpugpu %>% filter(CPU=="AMD Ryzen 5 3600")
+```
+
+```{r}
+ryzen_5_3600_GPU_pairing <- ryzen_5_3600 %>% count(GPU)
+#ryzen_5_3600_GPU_pairing <- arr
+```
+
+```{r}
+example_pairing <- ryzen_5_3600 %>% filter(GPU=="AMD RX 5700-XT")
+```
+
+```{r}
+AMD_Ryzen_7_3700X <- cpugpu %>% filter(CPU=="AMD Ryzen 7 3700X")
+AMD_Ryzen_7_3700X_Pairing <- AMD_Ryzen_7_3700X %>% count(GPU)
+```
+
+```{r}
+example_pairing2 <- AMD_Ryzen_7_3700X %>% filter(GPU == "AMD RX 5700-XT")
+```
+
+```{r}
+
+```
+
