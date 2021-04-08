@@ -60,6 +60,40 @@ example_pairing2 <- AMD_Ryzen_7_3700X %>% filter(GPU == "AMD RX 5700-XT")
 ```
 
 ```{r}
+intel_97_i700 <- cpugpu %>% filter(CPU=="Intel Core i7-9700K")
+intel_97_i700_pairing <- intel_97_i700 %>% count(GPU)
+```
 
+```{r}
+i79700_pop <- intel_97_i700 %>% filter(GPU=="Nvidia RTX 2060")
+```
+
+```{r}
+#AMD Ryzen 5 3600X
+ryzen_5_3600x <- cpugpu %>% filter(CPU=="AMD Ryzen 5 3600X")
+ryzen_5_3600x_pairing <- ryzen_5_3600x %>% count(GPU)
+```
+
+```{r}
+#AMD Ryzen 5 2600
+ryzen_5_2600 <- cpugpu %>% filter(CPU=="AMD Ryzen 5 2600")
+ryzen_5_2600_pairing <- ryzen_5_2600 %>% count(GPU)
+```
+
+```{r}
+library(chorddiag)
+```
+
+```{r}
+gpumatrix <- data.frame(RX5700XT = c(14, 11, 1, 4, 1), RTX2070Super = c(5, 5, 5, 2, 0), RTX2060 = c(2, 3, 3, 5, 2), RX580=c(1, 2,2,2,6))
+gpumatrix <- as.matrix(gpumatrix)
+```
+
+```{r}
+row.names(gpumatrix) = c("Ryzen 5 3600", "Ryzen 7 3700X", "i7 9700K", "Ryzen 5 3600X", "Ryzen 5 2600")
+```
+
+```{r}
+chorddiag(gpumatrix, type="bipartite", showTicks = T, groupnameFontsize = 14, groupnamePadding = 30, margin=120)
 ```
 
